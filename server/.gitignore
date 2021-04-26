@@ -24,7 +24,6 @@ build/Release
 
 # 테스트 이미지
 blobs
-*.png
 
 # firebase config
 firebaseConfig.js
