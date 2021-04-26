@@ -10,6 +10,8 @@ import theme from './store-theme'
 import messages from '../services/messages/messages'
 /** 블로그 */
 import blog from '../services/blog/blog'
+/** 파일 업로드 */
+import uploads from '../services/uploads/uploads'
 
 /** 저장된 메시지 */
 // import notification from '../services/notifications/notifications'
@@ -45,7 +47,7 @@ Vue.use(FeathersVuex);
 
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
-    plugins: [...servicePlugins, authvuex, messages, blog ],
+    plugins: [...servicePlugins, authvuex, messages, blog, uploads ],
     modules: {
       account,
       admin,

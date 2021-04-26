@@ -40,7 +40,10 @@
       </q-file>
 
       <div class="row justify-center q-ma-md">
-        <q-input class="col" label="Title *" v-model="post.title" dense />
+        <q-input class="col" label="제목 *" v-model="post.title" dense />
+      </div>
+      <div class="row justify-center q-ma-md">
+        <q-input class="col" label="내용 *" v-model="post.body" dense />
       </div>
 
       <div class="row justify-center q-ma-md">
@@ -93,6 +96,7 @@ export default {
         category: "",
         images: [],
       },
+      imgURL: null,
       isCapturedImage: false,
       isImageUpload: [],
       hasCameraSupport: true,
@@ -153,7 +157,9 @@ export default {
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
       this.isCapturedImage = true;
       //convert file to blob
-      this.post.imgURL = this.dataURItoBlob(canvas.toDataURL());
+      // this.post.imgURL = this.dataURItoBlob(canvas.toDataURL());
+      // url 
+      this.post.imgURL = canvas.toDataURL();
       this.disableCamera();
     },
     disableCamera() {
@@ -221,24 +227,29 @@ export default {
       });
       this.locationLoading = false;
     },
-
+    async saveImage() {
+      try {
+        const res = await this.$store.dispatch('uploads/create', { uri: this.post.imgURL })
+        this.post.images.push(res.id);
+      } catch (err) {
+        console.log(err);
+      }
+    },
     postImage: async function () {
       let formData = {
           title: this.post.title,
           body: this.post.body,
           location: this.post.location,
-          category: this.post.category
+          category: this.post.category,
+          images: this.post.images
 
       }
       this.$q.loading.show({
         spinner: QSpinnerFacebook,
       });
 
-      const res = await this.$feathersClient.service('blog').create(
-            formData            
-        )
-
-        
+      await this.saveImage()
+  
       try {
         const res = await this.$feathersClient.service('blog').create(
             formData            

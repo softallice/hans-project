@@ -55,13 +55,15 @@ export default {
   },
   methods: {
     getPosts: async function () {
-      console.log('--------------------------------------------')
       this.isLoading = true;
       try {
         const response = await this.$feathersClient.service('blog').find({
-            query: {}
+            query: {
+               $sort: { createdAt: -1 } 
+            }
         })
         this.posts = response.data;
+        console.log(response.data)
         this.isLoading = false;
       } catch (err) {
         this.$q.dialog({

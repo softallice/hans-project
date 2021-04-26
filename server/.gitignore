@@ -22,6 +22,10 @@ build/Release
 # 환경 설정 파일 
 .env
 
+# 테스트 이미지
+blobs
+*.png
+
 # firebase config
 firebaseConfig.js
 

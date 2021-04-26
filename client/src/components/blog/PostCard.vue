@@ -24,8 +24,8 @@
 
     <q-separator />
 
-    <!-- <q-img :src="post.images" /> -->
-    <div v-if="post.images" class="q-gutter-sm row items-start">
+    <q-img :src="'http://localhost:3030/blobs/' + post.images[0]"/>
+    <!-- <div v-if="post.images" class="q-gutter-sm row items-start">
       <div class="card" v-for="(image, idx) of post.images" :key="idx" style="width: 200px; display: inline-block">
           <q-img
             :src="'http://localhost:3030/blobs/' + image"
@@ -33,7 +33,7 @@
             style="height: 140px; max-width: 150px"
         />
       </div> 
-    </div>
+    </div> -->
 
     <q-card-section>
       <div>{{ post.title }}</div>
