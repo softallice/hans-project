@@ -6,7 +6,7 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const { setField } = require('feathers-authentication-hooks');
 const verifyHooks = require('feathers-authentication-management').hooks;
 const accountService = require('../auth-management/notifier');
-
+ 
 const {
   disallow,
   iff,
