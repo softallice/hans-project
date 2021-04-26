@@ -22,6 +22,7 @@
     "feathers-hooks-common": "^5.0.5",
     "feathers-vuex": "^3.16.0",
     "firebase": "^8.4.2",
+    "md-gum-polyfill": "^1.0.0",
     "quasar": "^1.0.0",
     "socket.io-client": "2.4.0",
     "vue-qrcode-reader": "^3.0.0",

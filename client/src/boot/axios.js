@@ -33,21 +33,15 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-axiosInstance.interceptors.response.use(
-  function(response) {
-    LoadingBar.stop();
-    return response;
-  },
-  function(error) {
-    LoadingBar.stop();
-    return Promise.reject(error);
-  }
-);
-
 Vue.prototype.$axiosInstance = axiosInstance;
+
 
 /*
 일반 API 연결
 */
+
+Vue.prototype.$axios = axios
+
+
 
 export default axiosInstance;

@@ -27,7 +27,6 @@ export default {
               && route.name !== 'Verify'
               && route.name !== 'Account' 
               && route.name !== 'ForgotPassword'
-              && route.name !== 'MobileHome' 
               && route.name !== 'ResetPassword' 
               && route.name !== 'DeviceSetting'
               && route.name !== 'SendNotification'
@@ -37,13 +36,7 @@ export default {
               && route.name !== 'Reader' 
               && route.name !== 'QrAuthList' 
               && route.name !== 'Calendar' 
-              && route.name !== 'blog' 
-              && route.name !== 'UserDietInfo' 
-              && route.name !== 'Blog' 
-              && route.name !== 'WriteMeal' 
-              && route.name !== 'ExerciseHistory' 
-              && route.name !== 'MealHistory' 
-              && route.name !== 'WeightHistory' 
+              
         )
     }
   }

@@ -23,6 +23,20 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
+        path: "/blog",
+        name: "Blog",
+        icon: "history",
+        component: () => import("pages/blog/BlogList.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/blogEntry",
+        name: "BlogEntry",
+        icon: "source",
+        component: () => import("pages/blog/BlogEntry.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
         path: "/forgot-password",
         name: "ForgotPassword",
         component: () => import("pages/ForgotPassword.vue"),
