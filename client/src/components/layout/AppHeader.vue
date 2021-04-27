@@ -15,7 +15,7 @@
         />
       <div v-if="$route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Setting')">
         <q-toolbar-title>
-          <h6 class="q-ma-none">송아리 다이어트</h6>
+          <h6 class="q-ma-none">Covid 19</h6>
         </q-toolbar-title>
       </div>
       <div v-else>           

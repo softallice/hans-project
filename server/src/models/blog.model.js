@@ -5,7 +5,16 @@ module.exports = function (app) {
   const schema = new Schema({
     title: { type: String, required: [true, "Title is required!"] },
     body: { type: String, required: [true, "Body is required!"] },
-    author: { type: Schema.Types.ObjectId, ref: 'users', index: true },
+    author: { 
+      _id: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+      },
+      username: String,
+      email: String,
+      avatar: { type: String, default: null }
+   },
     category: { type: String },
     cnt: {
         view: { type: Number, default: 0 },

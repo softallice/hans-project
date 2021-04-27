@@ -12,20 +12,32 @@ module.exports = function (app) {
       ref: "blog",
       required: true,
     },
-    author: { type: Schema.Types.ObjectId, ref: 'users', index: true },
-    parentComment:{type: Schema.Types.ObjectId, ref:'comment'},
+    author: { 
+      _id: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+        required: true,
+      },
+      username: { type: String, required: [true, "username is required!"] },
+      email: { type: String, required: [true, "email is required!"] },
+      avatar: { type: String, default: null },
+     },
+    parentComment:{
+      _id: { type: Schema.Types.ObjectId, ref: "comment" },
+      hasComment: { type: String, enum: ["no", "yes"], default: "no" },
+    },
     text: { type: String, required: [true, "text is required!"] },
     isDeleted: { type: Boolean, default: false },
     updatedAt: { type: Date },
   }, {
     timestamps: true,
-    toObject:{virtuals:true},
+    // toObject:{virtuals:true},
     versionKey: false
   });
 
-  schema.virtual('childComments')
-  .get(function(){ return this._childComments; })
-  .set(function(value){ this._childComments=value; });
+  // schema.virtual('childComments')
+  // .get(function(){ return this._childComments; })
+  // .set(function(value){ this._childComments=value; });
 
   // This is necessary to avoid model compilation errors in watch mode
   // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel

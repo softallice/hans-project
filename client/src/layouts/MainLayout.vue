@@ -16,7 +16,7 @@
                && $route.name !== 'WriteMeal' 
                && $route.name !== 'MealHistory' 
                && $route.name !== 'ExerciseHistory' 
-               && $route.name !== 'WeightHistory' 
+               && $route.name !== 'BlogView' 
                && $store.state.auth.user" 
       />
     <q-page-container class="app-page-container">
