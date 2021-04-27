@@ -8,7 +8,7 @@
           </div>
         </template>
         <template v-else-if="!isLoading && !posts.length">
-          <h5 class="text-center text-grey">No Posts yet.</h5>
+          <h5 class="text-center text-grey">등록된 글이 없습니다.</h5>
         </template>
         <template v-else>
           <SkeletonPostCard />
@@ -67,8 +67,20 @@ export default {
         this.isLoading = false;
       }
     },
-    goClick(post) {
+    async goClick(post) {
       console.log('post >>> ', post)
+      try {
+        // const res = await this.$axiosInstance.put("blog/" + post._id,{
+        //   cnt: {
+        //     view: post.cnt.view + 1
+        //   }
+        // })
+        const res =  await this.$feathersClient.service('blog').patch(post._id, {
+            view: post.view + 1
+        })
+      } catch (err) {
+        console.log(err);
+      }
       this.$router.push({
         path: `/blogView/${post._id}`
       })

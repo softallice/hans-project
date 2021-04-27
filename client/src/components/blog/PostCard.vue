@@ -17,8 +17,28 @@
       </q-item-section>
 
       <q-item-section>
-        <q-item-label class="text-bold">han-js</q-item-label>
+        <q-item-label class="text-bold">{{$store.state.auth.user.lastname + this.$store.state.auth.user.firstname}}</q-item-label>
         <q-item-label caption> {{ post.location }} </q-item-label>
+      </q-item-section>
+
+      <q-item-section top side>
+        <q-btn-dropdown size="12px" flat dense round dropdown-icon="more_vert">
+          <q-list>
+
+            <q-item clickable v-close-popup @click="onItemClick">
+              <q-item-section>
+                <q-item-label>수정</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-close-popup @click="delPost(post._id)">
+              <q-item-section>
+                <q-item-label>삭제</q-item-label>
+              </q-item-section>
+            </q-item>
+
+          </q-list>
+        </q-btn-dropdown>
       </q-item-section>
     </q-item>
 
@@ -38,7 +58,19 @@
     <q-card-section>
       <div>{{ post.title }}</div>
       <div>{{ post.body }}</div>
-      <div class="text-caption text-grey">{{ post.createdAt | formatedDate }}</div>
+      <div class="row">
+        <div class="col text-caption text-grey">
+          {{ post.createdAt | formatedDate }}
+        </div>
+        <div class="col text-right">
+          {{post.like}}
+          <q-btn flat round color="pink" size="sm" icon="favorite" @click="onLikeClick(post._id, post.like)"/>
+        </div>
+        <div class="col text-right">
+          {{post.view}}
+          <q-btn flat round color="grey" size="sm" icon="visibility" />
+        </div>
+      </div>
     </q-card-section>
   </q-card>
 </template>
@@ -47,6 +79,11 @@
 import { date } from "quasar";
 export default {
   name: "PostCard",
+  data() {
+    return {
+      commentCnt: 0
+    };
+  },
   props: {
     post: {
       type: Object,
@@ -57,6 +94,54 @@ export default {
     formatedDate(value) {
       return date.formatDate(value, "MMMM D h:mmA");
     },
+  },
+  mounted() {
+    this.getCommentCnt()
+  },
+  methods: {
+    async getCommentCnt () {
+      console.log('this.post.blog' , this.post.blog)
+      try {
+        const response = await this.$feathersClient.service('comment').find({
+            query: {
+              blog: this.post.blog
+            }
+        })
+        this.commentCnt = 1
+        console.log('response.data >>>> ', response.data)
+      } catch (err) {
+        this.$q.dialog({
+          title: "Error",
+          message: "Sorry something wrong, failed fetch data",
+        });
+        
+      }
+    },
+    onItemClick () {
+      // console.log('Clicked on an Item')
+    },
+    async delPost (postId) {
+      try {
+        const response = await this.$feathersClient.service('blog').remove(postId)
+        this.$router.push("/blog")
+      } catch (err) {
+        this.$q.dialog({
+          title: "Error",
+          message: "Sorry something wrong, failed delete data",
+        });
+      }
+    },
+    async onLikeClick(postId, like) {
+      console.log('postId', postId)
+      console.log('like', like)
+      try {
+        const res =  await this.$feathersClient.service('blog').patch(postId, {
+            like: like + 1
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }
   },
 };
 </script>

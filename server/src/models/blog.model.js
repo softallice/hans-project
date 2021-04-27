@@ -16,10 +16,8 @@ module.exports = function (app) {
       avatar: { type: String, default: null }
    },
     category: { type: String },
-    cnt: {
-        view: { type: Number, default: 0 },
-        like: { type: Number, default: 0 }
-    },
+    view: { type: Number, default: 0 },
+    like: { type: Number, default: 0 },
     images: [{ type: String }], // references to blobs
     attachment: { type: String }, // reference to blob    
     location: { type: String },
