@@ -23,8 +23,8 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label class="text-bold">han-js</q-item-label>
-            <q-item-label caption> han-js </q-item-label>
+            <q-item-label class="text-bold">{{$store.state.auth.user.lastname + this.$store.state.auth.user.firstname}}</q-item-label>
+            <q-item-label caption> {{$store.state.auth.user.lastname}} </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -46,12 +46,6 @@ export default {
       posts: [],
       isLoading: false,
     };
-  },
-//   mounted () {
-//     this.getPosts()
-    
-//   },
-  computed: {
   },
   methods: {
     getPosts: async function () {

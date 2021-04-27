@@ -1,25 +1,37 @@
 <template>
   <div>
-    <q-list bordered padding>
-      <q-item v-for="post in posts" :key="post._id">
-        <q-item-section top avatar>
-          <!-- <q-avatar color="primary" text-color="white" icon="bluetooth" /> -->
-          <q-avatar>
-            <!-- <img :src="post.author.avatar ? post.author.avatar : `https://cdn.quasar.dev/img/avatar.png`"> -->
-            <img src="https://cdn.quasar.dev/img/avatar.png">
-          </q-avatar>
-        </q-item-section>
+    <template v-if="posts.length">
+      <q-list bordered padding>
+        <q-item v-for="post in posts" :key="post._id">
+          <q-item-section top avatar>
+            <!-- <q-avatar color="primary" text-color="white" icon="bluetooth" /> -->
+            <q-avatar>
+              <!-- <img :src="post.author.avatar ? post.author.avatar : `https://cdn.quasar.dev/img/avatar.png`"> -->
+              <img src="https://cdn.quasar.dev/img/avatar.png">
+            </q-avatar>
+          </q-item-section>
 
-        <q-item-section>
-          <q-item-label caption>{{post.text}}</q-item-label>
-        </q-item-section>
+          <q-item-section>
+            <q-item-label caption>{{post.text}}</q-item-label>
+          </q-item-section>
 
-        <q-item-section side top>
-          <q-item-label caption>{{ post.createdAt | formatedDate }}</q-item-label>
-        </q-item-section>
-      </q-item>
-      <q-separator spaced />
-    </q-list>
+          <q-item-section side top>
+            <q-item-label caption>{{ post.createdAt | formatedDate }}</q-item-label>
+            <div class="text-grey-8 q-gutter-xs">
+              <q-btn 
+                v-if="$store.state.auth.user.email === post.author.email" 
+                size="12px" 
+                flat 
+                dense 
+                round 
+                icon="delete" 
+                @click="delComments(post._id)" 
+              />
+            </div>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </template>
     <q-footer>
         <q-toolbar class="bg-grey-3 text-black row">
           <q-input rounded outlined dense class="WAL__field col-grow q-mr-sm" bg-color="white" v-model="comment" placeholder="댓글 등록" @keyup.enter="postComments" />
@@ -41,20 +53,6 @@ export default {
     data() {
         return {
         posts: [],
-        // post: {
-        //     blog: "",
-        //     text: "",
-        //     author: {
-        //         _id: this.$store.state.auth.user._id,
-        //         username: this.$store.state.auth.user.lastname + this.$store.state.auth.user.firstname,
-        //         email: this.$store.state.auth.user.email,
-        //         avatar: this.$store.state.auth.user.avatar
-        //     },
-        //     isDeleted: false,
-        //     parentComment: {},
-        //     isLoading: false,
-        //     createdAt: '2021-04-26T07:53:55.148Z'
-        // },
         comment: "",
         };
     },
@@ -114,7 +112,25 @@ export default {
         });
         this.isLoading = false;
       }
-    }
+    },
+    delComments: async function (commentId) {
+      this.isLoading = true;
+      try {
+        const response = await this.$feathersClient.service('comment').remove(commentId)
+        this.isLoading = false;
+        await this.getComments();
+      } catch (err) {
+        this.$q.dialog({
+          title: "Error",
+          message: "Sorry something wrong, failed delete data",
+        });
+        this.isLoading = false;
+      }
+    },
+    deleteImage (idx) {
+      this.posts.images.splice(idx, 1);
+      this.$emit('change', this.posts);
+    },
   },
   activated(){
     this.getComments();
