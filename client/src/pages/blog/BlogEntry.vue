@@ -269,6 +269,8 @@ export default {
             },
           ],
         });
+        //성공완료 후 초기화
+        this.postInit()
       } catch (err) {
         this.$q.loading.hide();
         if (!navigator.onLine && this.isSupportedBackgroundSycn) {
@@ -282,6 +284,19 @@ export default {
         }
       }
     },
+    postInit() {
+      this.post.title= ""
+      this.post.body= ""
+      this.post.location= ""
+      this.post.author= {}
+      this.post.category= ""
+      this.post.images= []
+      this.post.imgURL= null
+      this.post.isCapturedImage= false
+      this.post.isImageUpload= []
+      this.post.hasCameraSupport= true
+      this.post.locationLoading= false
+    }
   },
   mounted() {
     this.initCamera();
