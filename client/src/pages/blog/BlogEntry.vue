@@ -92,7 +92,12 @@ export default {
         title: "",
         body: "",
         location: "",
-        author: {},
+        author: {
+          _id: this.$store.state.auth.user._id,
+          username: this.$store.state.auth.user.lastname + this.$store.state.auth.user.firstname,
+          email: this.$store.state.auth.user.email,
+          avatar: this.$store.state.auth.user.avatar
+        },
         category: "",
         images: [],
       },
@@ -100,7 +105,7 @@ export default {
       isCapturedImage: false,
       isImageUpload: [],
       hasCameraSupport: true,
-      locationLoading: false,
+      locationLoading: false
     };
   },
   computed: {
@@ -158,7 +163,7 @@ export default {
       this.isCapturedImage = true;
       //convert file to blob
       // this.post.imgURL = this.dataURItoBlob(canvas.toDataURL());
-      // url 
+      // 
       this.post.imgURL = canvas.toDataURL();
       this.disableCamera();
     },
@@ -166,29 +171,6 @@ export default {
       this.$refs.video.srcObject.getVideoTracks().forEach((track) => {
         track.stop();
       });
-    },
-    dataURItoBlob(dataURI) {
-      // convert base64 to raw binary data held in a string
-      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-      var byteString = atob(dataURI.split(",")[1]);
-
-      // separate out the mime component
-      var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-
-      // write the bytes of the string to an ArrayBuffer
-      var ab = new ArrayBuffer(byteString.length);
-
-      // create a view into the buffer
-      var ia = new Uint8Array(ab);
-
-      // set the bytes of the buffer to the correct values
-      for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-      }
-
-      // write the ArrayBuffer to a blob, and you're done
-      var blob = new Blob([ab], { type: mimeString });
-      return blob;
     },
     getLocation() {
       this.locationLoading = true;
@@ -239,6 +221,12 @@ export default {
       let formData = {
           title: this.post.title,
           body: this.post.body,
+          author: {
+            _id: this.$store.state.auth.user._id,
+            username: this.$store.state.auth.user.lastname + this.$store.state.auth.user.firstname,
+            email: this.$store.state.auth.user.email,
+            avatar: this.$store.state.auth.user.avatar
+          },
           location: this.post.location,
           category: this.post.category,
           images: this.post.images
@@ -298,14 +286,23 @@ export default {
       this.post.locationLoading= false
     }
   },
-  mounted() {
+  //mounted() {
+  activated() {
     this.initCamera();
   },
   beforeDestroy() {
+    console.log('this.hasCameraSupport',this.hasCameraSupport)
     if (this.hasCameraSupport) {
       this.disableCamera();
     }
   },
+  // 화면 전환시 카메라 핸들링
+  beforeRouteLeave (to, from, next) {
+    if (this.hasCameraSupport) {
+      this.disableCamera();
+    }
+    next()
+  }
 };
 </script>
 

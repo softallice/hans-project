@@ -3,10 +3,10 @@ export default function () {
     themes: {
       sky: {
         name: 'sky',
-        // primary: '#1C72B5',
-        primary: '#FD898C',
-        secondary: '#F7C7CB',
-        // secondary: '#7ca5c4',
+        primary: '#1C72B5',
+        // primary: '#FD898C',
+        // secondary: '#F7C7CB',
+        secondary: '#7ca5c4',
         dark: '#0D1A24',
         info: '#7dc9e0',
         bgImage: require('../../assets/images/themes/bg-custom.png'),

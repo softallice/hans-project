@@ -37,6 +37,13 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
+        path: "/blogView/:blogId",
+        name: "BlogView",
+        icon: "article",
+        component: () => import("pages/blog/BlogView.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
         path: "/forgot-password",
         name: "ForgotPassword",
         component: () => import("pages/ForgotPassword.vue"),

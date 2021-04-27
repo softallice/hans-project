@@ -3,8 +3,8 @@
     <div class="row row q-col-gutter-lg">
       <div class="col-12 col-sm-8">
         <template v-if="!isLoading && posts.length">
-          <div v-for="post in posts" :key="post._id" @click="goClick(post)">
-            <PostCard :post="post"/>
+          <div v-for="post in posts" :key="post._id">
+            <PostCard :post="post" />
           </div>
         </template>
         <template v-else-if="!isLoading && !posts.length">
@@ -13,6 +13,8 @@
         <template v-else>
           <SkeletonPostCard />
         </template>
+        <!-- 댓글 자리 -->
+        <CommentCard :blogId="$route.params.blogId ? $route.params.blogId : 'aaaaaa'"/>
       </div>
       <div class="col-4 large-screen-only">
         <q-item class="fixed">
@@ -23,8 +25,8 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label class="text-bold">{{$store.state.auth.user.lastname + this.$store.state.auth.user.firstname}}</q-item-label>
-            <q-item-label caption> {{$store.state.auth.user.lastname}} </q-item-label>
+            <q-item-label class="text-bold">han-js</q-item-label>
+            <q-item-label caption> han-js </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -35,11 +37,13 @@
 <script>
 import PostCard from "../../components/blog/PostCard";
 import SkeletonPostCard from "../../components/blog/SkeletonPostCard";
+import CommentCard from "../../components/comments/CommentCard";
 export default {
-  name: "HomePage",
+  name: "BlogView",
   components: {
     PostCard,
     SkeletonPostCard,
+    CommentCard,
   },
   data() {
     return {
@@ -47,17 +51,19 @@ export default {
       isLoading: false,
     };
   },
+  
+  // props ID 받아서 한건만 보기
+  // this.$route.params.blogId
   methods: {
     getPosts: async function () {
       this.isLoading = true;
       try {
         const response = await this.$feathersClient.service('blog').find({
             query: {
-               $sort: { createdAt: -1 } 
+              _id: this.$route.params.blogId
             }
         })
         this.posts = response.data;
-        console.log(response.data)
         this.isLoading = false;
       } catch (err) {
         this.$q.dialog({
@@ -66,12 +72,6 @@ export default {
         });
         this.isLoading = false;
       }
-    },
-    goClick(post) {
-      console.log('post >>> ', post)
-      this.$router.push({
-        path: `/blogView/${post._id}`
-      })
     },
   },
   activated(){
