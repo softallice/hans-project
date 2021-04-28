@@ -7,6 +7,22 @@ const comment = require('./comment/comment.service.js');
 const fileReference = require('./file-reference/file-reference.service.js');
 const uploads = require('./uploads/uploads.service.js');
 
+const goal = require('./goal/goal.service.js');
+
+const weight = require('./weight/weight.service.js');
+
+const pressure = require('./pressure/pressure.service.js');
+
+const sugar = require('./sugar/sugar.service.js');
+
+const exercise = require('./exercise/exercise.service.js');
+
+const message = require('./message/message.service.js');
+
+const meal = require('./meal/meal.service.js');
+
+const basic = require('./basic/basic.service.js');
+
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -17,4 +33,12 @@ module.exports = function (app) {
   app.configure(comment);
   app.configure(fileReference);
   app.configure(uploads);
+  app.configure(goal);
+  app.configure(weight);
+  app.configure(pressure);
+  app.configure(sugar);
+  app.configure(exercise);
+  app.configure(message);
+  app.configure(meal);
+  app.configure(basic);
 };

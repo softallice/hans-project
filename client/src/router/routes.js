@@ -23,6 +23,13 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
+        path: "/basicInfo",
+        name: "BasicInfo",
+        icon: "how_to_reg",
+        component: () => import("pages/basic/BasicInfo.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
         path: "/blog",
         name: "Blog",
         icon: "history",
@@ -43,6 +50,37 @@ const routes = [
         component: () => import("pages/blog/BlogView.vue"),
         meta: { requiresAuth: true }
       },
+      {
+        path: "/exercise",
+        name: "Exercise",
+        icon: "accessibility",
+        component: () => import("pages/exercise/Exercise.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/meal",
+        name: "Meal",
+        icon: "restaurant",
+        component: () => import("pages/meal/Meal.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/writeMeal",
+        // path: "/writeMeal/:mealId",
+        name: "WriteMeal",
+        icon: "history",
+        component: () => import("pages/meal/WriteMeal.vue"),
+        props: true,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/weight",
+        name: "Weight",
+        icon: "square_foot",
+        component: () => import("pages/weight/Weight.vue"),
+        meta: { requiresAuth: true }
+      },
+
       {
         path: "/forgot-password",
         name: "ForgotPassword",
