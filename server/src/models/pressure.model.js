@@ -18,7 +18,8 @@ module.exports = function (app) {
       avatar: { type: String, default: null }
     },
     writeDate: { type: String },
-    bp: { type: Number }, //weight
+    minBp: { type: Number }, //min
+    maxBp: { type: Number }, //max
     text: { type: String },
   }, {
     timestamps: true

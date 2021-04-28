@@ -272,13 +272,13 @@ export default {
       }
     },
 
-    // 체중 선택
+    // 체중 증감
     weightAdd () {
-      this.weight_data.weight = this.weight_data.weight + 1
+      this.weight_data.wt = this.weight_data.wt + 1
     },
 
     weightMinus () {
-      this.weight_data.weight = this.weight_data.weight - 1
+      this.weight_data.wt = this.weight_data.wt - 1
     },
   }
 }

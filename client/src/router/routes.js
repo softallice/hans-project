@@ -58,6 +58,13 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
+        path: "/goal",
+        name: "Goal",
+        icon: "control_camera",
+        component: () => import("pages/goal/Goal.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
         path: "/meal",
         name: "Meal",
         icon: "restaurant",

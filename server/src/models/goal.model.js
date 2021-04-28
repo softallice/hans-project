@@ -21,7 +21,8 @@ module.exports = function (app) {
     endDate: { type: String },
     wt: { type: Number }, //weight
     ht: { type: Number }, //height
-    bp: { type: Number }, //blood pressure
+    minBp: { type: Number }, //blood pressure
+    maxBp: { type: Number }, //blood pressure
     bs: { type: Number }, //blood sugar
     text: { type: String }
   }, {

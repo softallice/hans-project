@@ -70,6 +70,9 @@
           {{post.view}}
           <q-btn flat round color="grey" size="sm" icon="visibility" />
         </div>
+        <div class="col text-right">
+          <q-btn flat round color="grey" size="sm" :label="commentCnt" icon="receipt" />
+        </div>
       </div>
     </q-card-section>
   </q-card>
@@ -100,15 +103,15 @@ export default {
   },
   methods: {
     async getCommentCnt () {
-      console.log('this.post.blog' , this.post.blog)
+      
       try {
         const response = await this.$feathersClient.service('comment').find({
             query: {
-              blog: this.post.blog
+              blog: this.post._id
             }
         })
-        this.commentCnt = 1
-        console.log('response.data >>>> ', response.data)
+        this.commentCnt = response.total
+        
       } catch (err) {
         this.$q.dialog({
           title: "Error",
