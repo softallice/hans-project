@@ -1,7 +1,7 @@
 // Initializes the `message` service on path `/message`
-const { Message } = require('./message.class');
-const createModel = require('../../models/message.model');
-const hooks = require('./message.hooks');
+const { Messages } = require('./messages.class');
+const createModel = require('../../models/messages.model');
+const hooks = require('./messages.hooks');
 
 module.exports = function (app) {
   const options = {
@@ -10,10 +10,10 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/message', new Message(options, app));
+  app.use('/messages', new Messages(options, app));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('message');
+  const service = app.service('messages');
 
   service.hooks(hooks);
 };

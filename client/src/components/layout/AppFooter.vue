@@ -21,21 +21,25 @@ export default {
   computed: {
     tabRoutes () {
       return this.$router.options.routes[0].children.filter(
-        route => route.name !== 'Register' 
-              && route.name !== 'Consent'
-              && route.name !== 'Login' 
-              && route.name !== 'Verify'
+        route => route.name !== 'Dashboard' 
+              && route.name !== 'BpChart'
+              && route.name !== 'WeightChart' 
+              && route.name !== 'Login'
               && route.name !== 'Account' 
-              && route.name !== 'ForgotPassword'
+              && route.name !== 'BasicInfo'
+              // && route.name !== 'Blog' 
+              && route.name !== 'BlogEntry'
+              && route.name !== 'BlogView'
+              // && route.name !== 'Exercise' 
+              && route.name !== 'Goal' 
+              // && route.name !== 'Meal' 
+              && route.name !== 'Social' 
+              && route.name !== 'WriteMeal' 
+              // && route.name !== 'Weight' 
+              && route.name !== 'ForgotPassword' 
               && route.name !== 'ResetPassword' 
-              && route.name !== 'DeviceSetting'
-              && route.name !== 'SendNotification'
-              && route.name !== 'NotificationList' 
+              && route.name !== 'Register' 
               && route.name !== 'About' 
-              && route.name !== 'Dashboard' 
-              && route.name !== 'Reader' 
-              && route.name !== 'QrAuthList' 
-              && route.name !== 'Calendar' 
               
         )
     }

@@ -7,7 +7,28 @@ const routes = [
         path: "", 
         icon: 'home', 
         name: "Home", 
-        component: () => import("pages/Account.vue"),
+        component: () => import("pages/Dashboard.vue"),
+        meta: { requiresAuth: true }
+      },
+      { 
+        path: "/dashboard", 
+        name: "Dashboard", 
+        icon: 'dashboard',         
+        component: () => import("pages/Dashboard.vue"),
+        meta: { requiresAuth: true }
+      },
+      { 
+        path: "/bpchart", 
+        name: "BpChart", 
+        icon: 'poll',         
+        component: () => import("pages/charts/BpChart.vue"),
+        meta: { requiresAuth: true }
+      },
+      { 
+        path: "/weightchart", 
+        name: "WeightChart", 
+        icon: 'poll',         
+        component: () => import("pages/charts/WeightChart.vue"),
         meta: { requiresAuth: true }
       },
       {
@@ -69,6 +90,13 @@ const routes = [
         name: "Meal",
         icon: "restaurant",
         component: () => import("pages/meal/Meal.vue"),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/social",
+        name: "Social",
+        icon: "notifications_active",
+        component: () => import("pages/social/Social.vue"),
         meta: { requiresAuth: true }
       },
       {

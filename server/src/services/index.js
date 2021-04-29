@@ -17,7 +17,7 @@ const sugar = require('./sugar/sugar.service.js');
 
 const exercise = require('./exercise/exercise.service.js');
 
-const message = require('./message/message.service.js');
+const messages = require('./messages/messages.service.js');
 
 const meal = require('./meal/meal.service.js');
 
@@ -38,7 +38,7 @@ module.exports = function (app) {
   app.configure(pressure);
   app.configure(sugar);
   app.configure(exercise);
-  app.configure(message);
+  app.configure(messages);
   app.configure(meal);
   app.configure(basic);
 };

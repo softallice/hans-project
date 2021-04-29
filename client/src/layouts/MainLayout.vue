@@ -9,15 +9,21 @@
       />
     <AppDrawer />
     <AppFooter v-if="
-                  $route.name !== 'Login' 
-               && $route.name !== 'Register' 
-               && $route.name !== 'Consent' 
-               && $route.name !== 'Reader' 
-               && $route.name !== 'WriteMeal' 
-               && $route.name !== 'MealHistory' 
-               && $route.name !== 'ExerciseHistory' 
-               && $route.name !== 'BlogView' 
-               && $store.state.auth.user" 
+                   $route.name !== 'BpChart'
+                && $route.name !== 'WeightChart' 
+                && $route.name !== 'Login'
+                && $route.name !== 'Account' 
+                && $route.name !== 'BasicInfo'
+                && $route.name !== 'BlogEntry'
+                && $route.name !== 'BlogView'
+                && $route.name !== 'Goal' 
+                && $route.name !== 'Social' 
+                && $route.name !== 'WriteMeal' 
+                && $route.name !== 'ForgotPassword' 
+                && $route.name !== 'ResetPassword' 
+                && $route.name !== 'Register' 
+                && $route.name !== 'About'
+                && $store.state.auth.user" 
       />
     <q-page-container class="app-page-container">
       <transition

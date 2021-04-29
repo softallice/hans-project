@@ -3,24 +3,24 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
-  const modelName = 'message';
+  const modelName = 'messages';
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
     user: { 
       _id: {
-      type: Schema.Types.ObjectId,
-      ref: "users",
-      required: true,
+        type: Schema.Types.ObjectId,
+        ref: "users",
+        required: true,
       },
       username: String,
       email: String,
       avatar: { type: String, default: null }
     },
-    docUser: { 
+    rcvUser: { 
       _id: {
-      type: Schema.Types.ObjectId,
-      ref: "users",
+        type: Schema.Types.ObjectId,
+        ref: "users",
       },
       username: String,
       email: String,
