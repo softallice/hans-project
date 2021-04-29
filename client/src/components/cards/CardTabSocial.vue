@@ -158,7 +158,7 @@ export default {
   },
   data () {
     return {
-      tab: 'contact',
+      tab: 'message',
       messageCard: false,
       messageIndex: 0
     }

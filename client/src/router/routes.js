@@ -18,14 +18,28 @@ const routes = [
         meta: { requiresAuth: true }
       },
       { 
-        path: "/bpchart", 
-        name: "BpChart", 
+        path: "/writeBp", 
+        name: "WriteBp", 
         icon: 'poll',         
+        component: () => import("pages/pressure/WriteBp.vue"),
+        meta: { requiresAuth: true }
+      },
+      { 
+        path: "/bpChart", 
+        name: "BpChart", 
+        icon: 'bloodtype',         
         component: () => import("pages/charts/BpChart.vue"),
         meta: { requiresAuth: true }
       },
       { 
-        path: "/weightchart", 
+        path: "/exChart", 
+        name: "ExerciseChart", 
+        icon: 'bloodtype',         
+        component: () => import("pages/charts/ExerciseChart.vue"),
+        meta: { requiresAuth: true }
+      },
+      { 
+        path: "/weightChart", 
         name: "WeightChart", 
         icon: 'poll',         
         component: () => import("pages/charts/WeightChart.vue"),

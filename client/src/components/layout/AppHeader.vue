@@ -5,7 +5,7 @@
   >
     <q-toolbar>
       <q-btn
-          v-if="$store.state.auth.user && $route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog' || name === 'Exercise' || name === 'Meal' || name === 'WriteMeal')"
+          v-if="$store.state.auth.user && $route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog')"
           flat
           dense
           round
@@ -13,7 +13,7 @@
           aria-label="Menu"
           @click="$root.$emit('ToggleDrawer')"
         />
-      <div v-if="$route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog' || name === 'Exercise' || name === 'Meal' || name === 'WriteMeal')">
+      <div v-if="$route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog' )">
         <q-toolbar-title>
           <h6 class="q-ma-none">Covid 19</h6>
         </q-toolbar-title>
@@ -128,13 +128,13 @@ export default {
           multiLine: true,
           avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
           actions: [
-            { label: '열기', color: 'yellow', handler: () => { this.$router.push('/notification-list')} }
+            { label: '열기', color: 'yellow', handler: () => { this.$router.push('/social')} }
           ]
         })
 
         this.$store.dispatch('notifications/setNotificationRead', '')
       } else {
-        this.$router.push('/notification-list')
+        this.$router.push('/social')
       }
     }
   }

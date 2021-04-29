@@ -40,7 +40,7 @@ export default {
               value: "50 kg",
               color1: "#5064b5",
               color2: "#3e51b5",
-              pushUrl: "/weightchart"
+              pushUrl: "/weightChart"
             },
             {
               title: "Exercise",
@@ -48,7 +48,7 @@ export default {
               value: "3.5 h",
               color1: "#f37169",
               color2: "#f34636",
-              pushUrl: "/exercise"
+              pushUrl: "/exChart"
             },
             {
               title: "Blood Pressure",
@@ -56,7 +56,7 @@ export default {
               value: "120/80 mmHg",
               color1: "#ea6a7f",
               color2: "#ea4b64",
-              pushUrl: "/bpchart"
+              pushUrl: "/bpChart"
             },
             {
               title: "Health Instar",

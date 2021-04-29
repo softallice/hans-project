@@ -29,6 +29,10 @@
         </q-item>
       </div>
     </div>
+    <!-- 스티키 버튼 -->
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+        <q-btn fab icon="event_note" color="accent" @click="$router.push('/blogEntry')" />
+      </q-page-sticky>
   </q-page>
 </template>
 

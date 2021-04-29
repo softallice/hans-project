@@ -3,18 +3,10 @@
 
     <card-social icon_position="left" />
 
-    <!-- <chart-weight :weightProps="weightObject"/> -->
-
-    <!-- <div class="row q-col-gutter-sm  q-py-sm">
-      <tab-social />
-      <card-with-image />
+    <div class="row q-col-gutter-sm  q-py-sm">
+      <card-write/>
     </div>
 
-    <div class="row q-col-gutter-sm  q-py-sm">
-      <todo-list />
-
-      <card-time-line />
-    </div> -->
   </q-page>
 </template>
 
@@ -23,6 +15,7 @@
     name: 'Dashboard',
     components: {
         CardSocial: () =>  import('components/cards/CardSocial'),
+        CardWrite: () =>  import('components/cards/CardWrite'),
     },
     data() {
       return {
