@@ -5,7 +5,7 @@
   >
     <q-toolbar>
       <q-btn
-          v-if="$store.state.auth.user && $route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog')"
+          v-if="$store.state.auth.user && $route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' )"
           flat
           dense
           round
@@ -13,7 +13,7 @@
           aria-label="Menu"
           @click="$root.$emit('ToggleDrawer')"
         />
-      <div v-if="$route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard' || name === 'Blog' )">
+      <div v-if="$route.matched.some(({ name }) => name === 'Home' || name === 'Dashboard'  )">
         <q-toolbar-title>
           <h6 class="q-ma-none">Covid 19</h6>
         </q-toolbar-title>

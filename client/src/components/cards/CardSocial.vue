@@ -11,6 +11,9 @@
               <q-item-label class="text-white text-h6 text-weight-bolder">{{ item.value }}</q-item-label>
               <q-item-label>{{ item.title }}</q-item-label>
             </q-item-section>
+            <q-item-section side top class="q-pt-md q-mr-sm  text-white">
+              <q-item-label >{{item.lastDate}}</q-item-label>
+            </q-item-section>
             <q-item-section v-if="icon_position === 'right'" side class="q-mr-md text-white">
               <q-icon :name="item.icon" color="white" size="44px"></q-icon>
             </q-item-section>
@@ -28,6 +31,10 @@ export default {
     icon_position: {
       required: false,
       default: "left"
+    },
+    socialProps: {
+      type: Object,
+      required: false
     }
   },
   computed: {
@@ -37,7 +44,8 @@ export default {
             {
               title: "Weight",
               icon: "person",
-              value: "50 kg",
+              value: this.socialProps.weight + " kg",
+              lastDate: this.socialProps.lastWeight,
               color1: "#5064b5",
               color2: "#3e51b5",
               pushUrl: "/weightChart"
@@ -45,7 +53,8 @@ export default {
             {
               title: "Exercise",
               icon: "directions_run",
-              value: "3.5 h",
+              value: this.socialProps.exercise + " h",
+              lastDate: this.socialProps.lastExercise,
               color1: "#f37169",
               color2: "#f34636",
               pushUrl: "/exChart"
@@ -53,7 +62,8 @@ export default {
             {
               title: "Blood Pressure",
               icon: "calculate",
-              value: "120/80 mmHg",
+              value: this.socialProps.presure + " mmHg",
+              lastDate: this.socialProps.lastPresure,
               color1: "#ea6a7f",
               color2: "#ea4b64",
               pushUrl: "/bpChart"
@@ -61,7 +71,8 @@ export default {
             {
               title: "Health Instar",
               icon: "ballot",
-              value: "20 건",
+              value: this.socialProps.blog + " 건",
+              lastDate: "",
               color1: "#a270b1",
               color2: "#9f52b1",
               pushUrl: "/blog"

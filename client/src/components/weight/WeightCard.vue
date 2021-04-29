@@ -2,7 +2,7 @@
 <template>
   <div style="max-width: 800px; width: 100%;">
     <div class="title-bar row items-center overflow-hidden">
-      <q-btn flat  icon="fas fa-chevron-left" class="direction-button" style="height: 100%" @click="onPrev" />
+      <q-btn flat icon="arrow_back_ios" class="direction-button" style="height: 100%" @click="onPrev" />
       <transition :name="transition" appear>
         <div :key="parsedStart.date" class="row justify-between items-center overflow-hidden" style="width: calc(100% - 112px)">
           <div v-for="day in days" :key="day.date" class="col-auto" :style="dayStyle">
@@ -14,7 +14,7 @@
           </div>
         </div>
       </transition>
-      <q-btn flat  icon="fas fa-chevron-right" class="direction-button" style="height: 100%" @click="onNext" />
+      <q-btn flat icon="arrow_forward_ios" class="direction-button" style="height: 100%" @click="onNext" />
     </div>
     <!-- 몸무게 기록 -->
     <q-card class="q-pa-md" style="min-width: 350px">
@@ -251,8 +251,7 @@ export default {
         const resFind = await this.$feathersClient.service('weight').find({
             query: {
                 'user._id': this.$store.state.auth.user._id,
-                writeDate: this.selectedDate,
-                $sort: { sort: 1 } 
+                writeDate: this.selectedDate
             }
         })
         // const resFind = await this.$axiosInstance.get("/blog-entry?writeDate[$in][]='2021-04-21'$sort[createdAt]=-1")

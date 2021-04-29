@@ -16,6 +16,7 @@
                 && $route.name !== 'BasicInfo'
                 && $route.name !== 'BlogEntry'
                 && $route.name !== 'BlogView'
+                && $route.name !== 'Blog'
                 && $route.name !== 'Goal' 
                 && $route.name !== 'Social' 
                 && $route.name !== 'WriteMeal' 

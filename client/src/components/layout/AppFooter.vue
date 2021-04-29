@@ -27,7 +27,7 @@ export default {
               && route.name !== 'Login'
               && route.name !== 'Account' 
               && route.name !== 'BasicInfo'
-              // && route.name !== 'Blog' 
+              && route.name !== 'Blog' 
               && route.name !== 'BlogEntry'
               && route.name !== 'BlogView'
               && route.name !== 'Exercise' 
@@ -42,6 +42,7 @@ export default {
               && route.name !== 'ResetPassword' 
               && route.name !== 'Register' 
               && route.name !== 'About' 
+              && route.name !== 'Home' 
               
         )
     }

@@ -35,7 +35,7 @@
             <q-card-actions vertical>
               <div>
                 <div class="text-weight-bold">운동</div>
-                <div class="text-grey">운동 기록을 통한 건강관리를 해보세쇼</div>
+                <div class="text-grey">운동 기록을 통한 건강관리를 해보세요</div>
               </div>
             </q-card-actions>
 
@@ -103,3 +103,8 @@ export default {
   }
 }
 </script>
+<style lang="sass" scoped>
+.my-card
+  width: 100%
+  min-width: 380px
+</style>
